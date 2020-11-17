@@ -2,13 +2,11 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:chewie/chewie.dart';
-import 'package:chewie_audio/chewie_audio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_html/src/utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:video_player/video_player.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_html/html_parser.dart';
@@ -173,13 +171,7 @@ class IframeContentElement extends ReplacedElement {
     return Container(
       width: width ?? (height ?? 150) * 2,
       height: height ?? (width ?? 300) / 2,
-      child: WebView(
-        initialUrl: src,
-        javascriptMode: JavascriptMode.unrestricted,
-        gestureRecognizers: {
-          Factory(() => PlatformViewVerticalGestureRecognizer())
-        },
-      ),
+      child: Container()
     );
   }
 }
@@ -207,17 +199,7 @@ class AudioContentElement extends ReplacedElement {
   Widget toWidget(RenderContext context) {
     return Container(
       width: context.style.width ?? 300,
-      child: ChewieAudio(
-        controller: ChewieAudioController(
-          videoPlayerController: VideoPlayerController.network(
-            src.first ?? "",
-          ),
-          autoPlay: autoplay,
-          looping: loop,
-          showControls: showControls,
-          autoInitialize: true,
-        ),
-      ),
+      child: Container()
     );
   }
 }
